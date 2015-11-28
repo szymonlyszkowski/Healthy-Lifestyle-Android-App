@@ -20,6 +20,12 @@
             android:name=".MealMenuActivity"
             android:label="@string/title_activity_meal_menu" >
         </activity>
+        <activity
+            android:name=".TargetActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_target"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
     </application>
 
 </manifest>

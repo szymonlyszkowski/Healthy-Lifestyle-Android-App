@@ -6,7 +6,11 @@
     <!-- "Mark Favorite", should appear as action button if possible -->
     <item
         android:id="@+id/action_meal_menu"
-        android:title="@string/action_favorite"
+        android:title="@string/title_activity_meal_menu"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_target_module"
+        android:title="@string/title_activity_target"
+        app:showAsAction="never"/>
 </menu>

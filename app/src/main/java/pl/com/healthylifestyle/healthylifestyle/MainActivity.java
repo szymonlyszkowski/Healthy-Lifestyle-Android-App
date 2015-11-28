@@ -3,7 +3,6 @@ package pl.com.healthylifestyle.healthylifestyle;
 import java.util.Locale;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -73,15 +72,26 @@ public class MainActivity extends ActionBarActivity {
 //        }
         switch (item.getItemId()) {
             case R.id.action_meal_menu:
-                Intent intent = new Intent(this, MealMenuActivity.class);
-                this.startActivity(intent);
+                displayMealMenuActivity();
                 break;
-
+            case R.id.action_target_module:
+                displayTargetActivity();
+                break;
             case R.id.action_settings:
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void displayMealMenuActivity(){
+        Intent intent = new Intent(this, MealMenuActivity.class);
+        this.startActivity(intent);
+    }
+
+    private void displayTargetActivity(){
+        Intent intent = new Intent(this, TargetActivity.class);
+        this.startActivity(intent);
     }
 
 

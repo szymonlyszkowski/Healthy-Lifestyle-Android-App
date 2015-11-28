@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Healthy Lifestyle</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="meals_menu">THIS IS MENU FOR MEALS</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_meal_menu">Meal Menu</string>
+    <string name="action_favorite">meals meanu</string>
+</resources>

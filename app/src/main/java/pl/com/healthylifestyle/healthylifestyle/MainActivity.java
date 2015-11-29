@@ -1,5 +1,7 @@
 package pl.com.healthylifestyle.healthylifestyle;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import android.content.Intent;
@@ -15,6 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.activeandroid.ActiveAndroid;
+import com.activeandroid.query.Select;
+
+import pl.com.healthylifestyle.healthylifestyle.model.TestPersistableEntity;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -50,6 +57,17 @@ public class MainActivity extends ActionBarActivity {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        //test
+        ActiveAndroid.initialize(this);
+
+        TestPersistableEntity entity = new TestPersistableEntity(1, "Test entity", new Date());
+        entity.save();
+
+        TestPersistableEntity entity2 = new TestPersistableEntity(2, "Test entity 2", new Date());
+        entity.save();
+
+        List<TestPersistableEntity> result = new Select().from(TestPersistableEntity.class).execute();
+        System.out.println(result);
     }
 
 

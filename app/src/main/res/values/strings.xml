@@ -8,10 +8,13 @@
     <string name="meals_menu">THIS IS MENU FOR MEALS</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_home">Home</string>
     <string name="title_activity_meal_menu">Meal Menu</string>
     <string name="action_meals_menu">meals menu</string>
 
+    <!-- TARGET MODULE START -->
     <string name="title_activity_target">Target Module</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TARGET MODULE END -->
 </resources>

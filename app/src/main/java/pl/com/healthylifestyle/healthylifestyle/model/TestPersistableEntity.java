@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Table(name="testpersistence")
 public class TestPersistableEntity extends Model {
-    public long id;
+
     public String name;
     public Date creationDate;
 
@@ -20,10 +20,9 @@ public class TestPersistableEntity extends Model {
         super();
     }
 
-    public TestPersistableEntity(long id, String name, Date creationDate) {
+    public TestPersistableEntity(String name, Date creationDate) {
         super();
-        
-        this.id = id;
+
         this.name = name;
         this.creationDate = creationDate;
     }

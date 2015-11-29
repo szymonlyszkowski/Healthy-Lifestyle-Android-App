@@ -1,29 +1,45 @@
 package pl.com.healthylifestyle.healthylifestyle.model;
 
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+
 /**
  * @author alisowsk
  */
-public class Target {
+@Table(name = "target")
+public class Target extends Model {
 
-    private Long id;
+    @Column
+    public String name;
 
-    private String name;
+    @Column
+    public double startValue;
 
-    private double startValue;
+    @Column
+    public double desiredValue;
 
-    private double desiredValue;
+    @Column
+    public double currentValue;
 
-    private double currentValue;
-
-    public Target(String name, double desiredValue, double startValue) {
-        this.name = name;
-        this.desiredValue = desiredValue;
-        this.startValue = startValue;
-        this.currentValue = startValue;
+    public Target(){
+        super();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Target(String name, double startValue, double desiredValue) {
+        super();
+        this.name = name;
+        this.startValue = startValue;
+        this.currentValue = startValue;
+        this.desiredValue = desiredValue;
+    }
+
+    public Target(String name, double startValue, double desiredValue, double currentValue) {
+        super();
+        this.name = name;
+        this.startValue = startValue;
+        this.desiredValue = desiredValue;
+        this.currentValue = currentValue;
     }
 
     public String getName() {
@@ -58,3 +74,4 @@ public class Target {
         this.currentValue = currentValue;
     }
 }
+

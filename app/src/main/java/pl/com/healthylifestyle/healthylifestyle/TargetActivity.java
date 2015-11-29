@@ -8,7 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.activeandroid.query.Delete;
+import com.activeandroid.query.Select;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import pl.com.healthylifestyle.healthylifestyle.adapter.TargetAdapter;
 import pl.com.healthylifestyle.healthylifestyle.model.Target;
@@ -18,7 +22,7 @@ import pl.com.healthylifestyle.healthylifestyle.model.Target;
  */
 public class TargetActivity extends ListActivity {
 
-    private ArrayList<Target> targets;
+    private List<Target> targets;
     private TargetAdapter targetsAdapter;
 
     @Override
@@ -64,17 +68,21 @@ public class TargetActivity extends ListActivity {
     }
 
     public void addTargetEvent(View v) {
-        targets.add(new Target("New", 100, 0));
+        Target newTarget = new Target("New", 100, 0);
+        newTarget.save();
+        targets.add(newTarget);
         targetsAdapter.notifyDataSetChanged();
     }
 
     private void prepareTestData(){
-        if(null == targets){
+        targets = new Select().from(Target.class).execute();
+        //new Delete().from(Target.class).execute();
+        if(targets.size() == 0){
             targets = new ArrayList<>();
+            targets.add(new Target("Loose weight", 80, 90));
+            targets.add(new Target("Run km", 150, 0));
+            targets.add(new Target("Eat carrot", 30, 0));
+            targets.add(new Target("Go to jym", 10, 0));
         }
-        targets.add(new Target("Loose weight", 80, 90));
-        targets.add(new Target("Run km", 150, 0));
-        targets.add(new Target("Eat carrot", 30, 0));
-        targets.add(new Target("Go to jym", 10, 0));
     }
 }

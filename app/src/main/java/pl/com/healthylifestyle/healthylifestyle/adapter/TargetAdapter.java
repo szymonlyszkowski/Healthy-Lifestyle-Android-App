@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import pl.com.healthylifestyle.healthylifestyle.R;
 import pl.com.healthylifestyle.healthylifestyle.model.Target;
@@ -17,10 +18,10 @@ import pl.com.healthylifestyle.healthylifestyle.model.Target;
  * @author alisowsk
  */
 public class TargetAdapter extends ArrayAdapter<Target> {
-    private ArrayList<Target> targetList;
+    private List<Target> targetList;
     private Context context;
 
-    public TargetAdapter (Context context, int resource, ArrayList<Target> objects) {
+    public TargetAdapter (Context context, int resource, List<Target> objects) {
         super(context, resource, objects);
         // TODO Auto-generated constructor stub
         this.context = context;

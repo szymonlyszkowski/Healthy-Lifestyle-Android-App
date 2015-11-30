@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import pl.com.healthylifestyle.healthylifestyle.R;
@@ -23,9 +22,8 @@ public class TargetAdapter extends ArrayAdapter<Target> {
 
     public TargetAdapter (Context context, int resource, List<Target> objects) {
         super(context, resource, objects);
-        // TODO Auto-generated constructor stub
         this.context = context;
-        targetList = objects;
+        this.targetList = objects;
     }
 
     @Override

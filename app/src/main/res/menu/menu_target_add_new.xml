@@ -2,16 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".TargetActivity">
+    tools:context=".TargetAddNewActivity">
 
     <item android:id="@+id/action_home"
         android:title="@string/action_home"
         android:orderInCategory="1"
         app:showAsAction="never" />
 
+    <item android:id="@+id/action_target_module"
+        android:title="@string/activity_target_list_title"
+        android:orderInCategory="2"
+        app:showAsAction="never" />
+
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         app:showAsAction="never" />
 
 </menu>

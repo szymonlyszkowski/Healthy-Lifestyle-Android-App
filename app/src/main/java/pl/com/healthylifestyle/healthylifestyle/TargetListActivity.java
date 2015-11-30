@@ -8,10 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import pl.com.healthylifestyle.healthylifestyle.adapter.TargetAdapter;
@@ -20,26 +18,30 @@ import pl.com.healthylifestyle.healthylifestyle.model.Target;
 /**
  * @author alisowsk
  */
-public class TargetActivity extends ListActivity {
-
+public class TargetListActivity extends ListActivity {
     private List<Target> targets;
     private TargetAdapter targetsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_target);
+        setContentView(R.layout.activity_target_list);
         getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
 
-        prepareTestData();
+        initFields();
+    }
 
-        targetsAdapter = new TargetAdapter(this, android.R.layout.simple_list_item_1, targets);
+    private void initFields() {
+        this.targets = new Select().from(Target.class).execute();
+        prepareTestData(); //TODO remove before Go Live
+
+        this.targetsAdapter = new TargetAdapter(this, android.R.layout.simple_list_item_1, targets);
         setListAdapter(targetsAdapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_target, menu);
+        getMenuInflater().inflate(R.menu.menu_target_list, menu);
         return true;
     }
 
@@ -68,21 +70,20 @@ public class TargetActivity extends ListActivity {
     }
 
     public void addTargetEvent(View v) {
-        Target newTarget = new Target("New", 100, 0);
-        newTarget.save();
-        targets.add(newTarget);
-        targetsAdapter.notifyDataSetChanged();
+        Intent intent = new Intent(this, TargetAddNewActivity.class);
+        this.startActivity(intent);
     }
 
+    //TODO remove before Go Live
     private void prepareTestData(){
-        targets = new Select().from(Target.class).execute();
-        //new Delete().from(Target.class).execute();
         if(targets.size() == 0){
-            targets = new ArrayList<>();
             targets.add(new Target("Loose weight", 80, 90));
             targets.add(new Target("Run km", 150, 0));
             targets.add(new Target("Eat carrot", 30, 0));
             targets.add(new Target("Go to jym", 10, 0));
+            targets.add(new Target("Swim minutes", 100, 0));
         }
     }
+
+
 }

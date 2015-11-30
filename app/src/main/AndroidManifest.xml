@@ -28,10 +28,14 @@
             android:label="@string/title_activity_meal_menu" >
         </activity>
         <activity
-            android:name=".TargetActivity"
-            android:label="@string/title_activity_target"
+            android:name=".TargetListActivity"
+            android:label="@string/activity_target_list_title"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
             <!-- TODO investigate how to add the same menu as in ActionBarActivity -->
+        </activity>
+        <activity
+            android:name=".TargetAddNewActivity"
+            android:label="@string/activity_target_add_new_title">
         </activity>
     </application>
 

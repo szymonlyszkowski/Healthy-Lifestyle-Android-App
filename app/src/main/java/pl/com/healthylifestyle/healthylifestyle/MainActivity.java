@@ -108,7 +108,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void displayTargetActivity(){
-        Intent intent = new Intent(this, TargetActivity.class);
+        Intent intent = new Intent(this, TargetListActivity.class);
         this.startActivity(intent);
     }
 

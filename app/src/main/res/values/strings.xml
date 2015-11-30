@@ -13,8 +13,12 @@
     <string name="action_meals_menu">meals menu</string>
 
     <!-- TARGET MODULE START -->
-    <string name="title_activity_target">Target Module</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="activity_target_list_title">Target Module</string>
+
+    <string name="activity_target_add_new_title">Add new target</string>
+    <string name="activity_target_add_new_name">Name</string>
+    <string name="activity_target_add_new_current_value">Current value</string>
+    <string name="activity_target_add_new_desired_value">Desired value</string>
+    <string name="activity_target_add_new_save">Save</string>
     <!-- TARGET MODULE END -->
 </resources>

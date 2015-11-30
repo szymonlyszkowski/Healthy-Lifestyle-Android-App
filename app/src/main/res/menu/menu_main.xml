@@ -11,6 +11,6 @@
 
     <item
         android:id="@+id/action_target_module"
-        android:title="@string/title_activity_target"
+        android:title="@string/activity_target_list_title"
         app:showAsAction="never"/>
 </menu>

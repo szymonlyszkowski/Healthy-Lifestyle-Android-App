@@ -20,13 +20,22 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MealMenuActivity"
             android:label="@string/title_activity_meal_menu" >
+        </activity>
+        <activity
+            android:name=".TargetListActivity"
+            android:label="@string/activity_target_list_title"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+            <!-- TODO investigate how to add the same menu as in ActionBarActivity -->
+        </activity>
+        <activity
+            android:name=".TargetAddNewActivity"
+            android:label="@string/activity_target_add_new_title">
         </activity>
     </application>
 

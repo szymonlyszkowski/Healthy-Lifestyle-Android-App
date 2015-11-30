@@ -15,6 +15,7 @@ import pl.com.healthylifestyle.healthylifestyle.model.Target;
  */
 public class TargetAddNewActivity extends ActionBarActivity {
     private EditText nameEditText;
+    private EditText descriptionEditText;
     private EditText currentValueEditText;
     private EditText desiredValueEditText;
 
@@ -29,6 +30,7 @@ public class TargetAddNewActivity extends ActionBarActivity {
 
     private void initFields() {
         nameEditText = (EditText) findViewById(R.id.nameEditText);
+        descriptionEditText = (EditText) findViewById(R.id.descriptionEditText);
         currentValueEditText = (EditText) findViewById(R.id.currentValueEditText);
         desiredValueEditText = (EditText) findViewById(R.id.desiredValueEditText);
     }
@@ -63,9 +65,10 @@ public class TargetAddNewActivity extends ActionBarActivity {
 
     private void saveTarget() {
         String name = nameEditText.getText().toString();
+        String description = descriptionEditText.getText().toString();
         double currentValue = Double.valueOf(currentValueEditText.getText().toString());
         double desiredValue = Double.valueOf(desiredValueEditText.getText().toString());
-        Target newTarget = new Target(name, currentValue, desiredValue);
+        Target newTarget = new Target(name, description, currentValue, desiredValue);
         newTarget.save();
     }
 

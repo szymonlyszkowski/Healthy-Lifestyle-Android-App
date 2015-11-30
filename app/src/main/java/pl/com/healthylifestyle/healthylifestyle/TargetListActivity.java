@@ -77,11 +77,11 @@ public class TargetListActivity extends ListActivity {
     //TODO remove before Go Live
     private void prepareTestData(){
         if(targets.size() == 0){
-            targets.add(new Target("Loose weight", 80, 90));
-            targets.add(new Target("Run km", 150, 0));
-            targets.add(new Target("Eat carrot", 30, 0));
-            targets.add(new Target("Go to jym", 10, 0));
-            targets.add(new Target("Swim minutes", 100, 0));
+            targets.add(new Target("Loose weight", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 80, 90));
+            targets.add(new Target("Run km", "Suspendisse eget rutrum tortor, in ornare nisl.", 150, 0));
+            targets.add(new Target("Eat carrot", "Ut eget erat sit amet sapien tincidunt commodo eget ac quam.", 30, 0));
+            targets.add(new Target("Go to jym", "Aliquam vel nunc nulla.",10, 0));
+            targets.add(new Target("Swim minutes", "Praesent euismod ut enim eget ultricies.", 100, 0));
         }
     }
 

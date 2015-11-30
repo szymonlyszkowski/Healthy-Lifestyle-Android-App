@@ -4,6 +4,9 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * @author alisowsk
  */
@@ -14,6 +17,9 @@ public class Target extends Model {
     public String name;
 
     @Column
+    public String description;
+
+    @Column
     public double startValue;
 
     @Column
@@ -22,24 +28,24 @@ public class Target extends Model {
     @Column
     public double currentValue;
 
+    @Column
+    public Date startDate;
+
+    @Column
+    public Date endDate;
+
     public Target(){
         super();
     }
 
-    public Target(String name, double startValue, double desiredValue) {
+    public Target(String name, String description, double startValue, double desiredValue) {
         super();
         this.name = name;
+        this.description = description;
         this.startValue = startValue;
         this.currentValue = startValue;
         this.desiredValue = desiredValue;
-    }
-
-    public Target(String name, double startValue, double desiredValue, double currentValue) {
-        super();
-        this.name = name;
-        this.startValue = startValue;
-        this.desiredValue = desiredValue;
-        this.currentValue = currentValue;
+        this.startDate = Calendar.getInstance().getTime();
     }
 
     public String getName() {
@@ -48,6 +54,14 @@ public class Target extends Model {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public double getStartValue() {
@@ -72,6 +86,22 @@ public class Target extends Model {
 
     public void setCurrentValue(double currentValue) {
         this.currentValue = currentValue;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }
 

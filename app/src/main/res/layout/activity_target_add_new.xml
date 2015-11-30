@@ -14,6 +14,16 @@
         android:layout_height="wrap_content"
         android:hint="@string/activity_target_add_new_name" />
 
+    <EditText android:id="@+id/descriptionEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:gravity="top|left"
+        android:lines="8"
+        android:minLines="6"
+        android:maxLines="10"
+        android:hint="@string/activity_target_add_new_description" />
+
     <EditText android:id="@+id/currentValueEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

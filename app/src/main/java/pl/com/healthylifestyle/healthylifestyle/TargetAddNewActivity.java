@@ -58,14 +58,43 @@ public class TargetAddNewActivity extends ActionBarActivity {
     }
 
     public void addTargetEvent(View v) {
-        //TODO validate
-        saveTarget();
-        displayTargetListActivity();
+        if(validate()){
+            saveTarget();
+            displayTargetListActivity();
+        }
+    }
+
+    private boolean validate() {
+        //TODO extract class, maybe find some nice way to validate - library with annotations?
+        if(null == nameEditText.getText() || nameEditText.getText().toString().isEmpty()){
+            nameEditText.setError("Name field cannot be empty");
+            return false;
+        }
+        if(null == currentValueEditText.getText() || currentValueEditText.getText().toString().isEmpty()){
+            currentValueEditText.setError("Current value cannot be empty");
+            return false;
+        }
+        if(!currentValueEditText.getText().toString().matches("^[1-9]\\d*(\\.\\d+)?$")){
+            currentValueEditText.setError("Current value has to be number");
+            return false;
+        }
+        if(null == desiredValueEditText.getText() || desiredValueEditText.getText().toString().isEmpty()){
+            desiredValueEditText.setError("Desired value cannot be empty");
+            return false;
+        }
+        if(!desiredValueEditText.getText().toString().matches("^[1-9]\\d*(\\.\\d+)?$")){
+            desiredValueEditText.setError("Desired value has to be number");
+            return false;
+        }
+        return true;
     }
 
     private void saveTarget() {
         String name = nameEditText.getText().toString();
-        String description = descriptionEditText.getText().toString();
+        String description = "";
+        if(null != descriptionEditText.getText() && descriptionEditText.getText().toString().isEmpty()){
+            description = descriptionEditText.getText().toString();
+        }
         double currentValue = Double.valueOf(currentValueEditText.getText().toString());
         double desiredValue = Double.valueOf(desiredValueEditText.getText().toString());
         Target newTarget = new Target(name, description, currentValue, desiredValue);

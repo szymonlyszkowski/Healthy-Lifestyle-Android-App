@@ -9,4 +9,22 @@
     <TextView android:id="@+id/section_label" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create test entity"
+        android:id="@+id/createTestEntityButton"
+        android:layout_below="@+id/section_label"
+        android:layout_centerHorizontal="true"
+        android:onClick="createTestEntity"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Display test notification"
+        android:id="@+id/displayTestNotification"
+        android:layout_below="@+id/createTestEntityButton"
+        android:layout_centerHorizontal="true"
+        android:onClick="displayTestNotification"/>
+
 </RelativeLayout>

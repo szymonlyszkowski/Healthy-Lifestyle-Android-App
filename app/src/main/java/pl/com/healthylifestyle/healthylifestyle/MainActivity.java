@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -11,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,19 +60,8 @@ public class MainActivity extends ActionBarActivity {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        //test
         ActiveAndroid.initialize(this);
-
-        TestPersistableEntity entity = new TestPersistableEntity(1, "Test entity", new Date());
-        entity.save();
-
-        TestPersistableEntity entity2 = new TestPersistableEntity(2, "Test entity 2", new Date());
-        entity.save();
-
-        List<TestPersistableEntity> result = new Select().from(TestPersistableEntity.class).execute();
-        System.out.println(result);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -118,6 +111,29 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(getApplicationContext(), cls);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    public void createTestEntity(View view) {
+        TestPersistableEntity entity = new TestPersistableEntity("Test entity", new Date());
+        entity.save();
+
+        List<TestPersistableEntity> result = new Select().from(TestPersistableEntity.class).execute();
+        System.out.println(result);
+    }
+
+    public void displayTestNotification(View view) {
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("Test notification")
+                .setContentText("This is content of the test notification")
+                .setSmallIcon(R.drawable.app_notification_icon)
+                .build();
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+        int notificationId = 1;
+        mNotificationManager.notify(notificationId, notification);
     }
 
 

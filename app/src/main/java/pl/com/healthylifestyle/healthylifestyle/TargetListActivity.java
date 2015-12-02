@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 
 import com.activeandroid.query.Select;
@@ -27,6 +29,8 @@ public class TargetListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_target_list);
         getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
 
         initFields();
     }
@@ -51,11 +55,18 @@ public class TargetListActivity extends ListActivity {
             case R.id.action_home:
                 displayMainActivity();
                 break;
+            case R.id.action_remove_selected_items:
+                removeSelectedItems();
+                break;
             case R.id.action_settings:
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void removeSelectedItems() {
+        //TODO display popup
     }
 
     private void displayMainActivity(){
@@ -84,6 +95,5 @@ public class TargetListActivity extends ListActivity {
             targets.add(new Target("Swim minutes", "Praesent euismod ut enim eget ultricies.", 100, 0));
         }
     }
-
 
 }

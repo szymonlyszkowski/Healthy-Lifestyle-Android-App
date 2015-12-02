@@ -33,7 +33,7 @@ public class TargetAdapter extends ArrayAdapter<Target> {
         if (view == null) {
             targetItemHolder = new TargetItemHolder();
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            view = inflater.inflate(R.layout.target_custom_row, parent, false);
+            view = inflater.inflate(R.layout.activity_target_custom_row, parent, false);
             targetItemHolder.name = (TextView) view.findViewById(R.id.target_custom_row);
             view.setTag(targetItemHolder);
         } else {

@@ -9,12 +9,13 @@
 
     <string name="action_settings">Settings</string>
     <string name="action_home">Home</string>
+    <string name="action_remove_selected_items">Delete selected</string>
     <string name="title_activity_meal_menu">Meal Menu</string>
     <string name="action_meals_menu">meals menu</string>
 
     <!-- TARGET MODULE START -->
     <string name="activity_target_list_title">Target Module</string>
-
+    <string name="activity_target_add_new">Add new</string>
     <string name="activity_target_add_new_title">Add new target</string>
     <string name="activity_target_add_new_name">Name</string>
     <string name="activity_target_add_new_description">Description</string>

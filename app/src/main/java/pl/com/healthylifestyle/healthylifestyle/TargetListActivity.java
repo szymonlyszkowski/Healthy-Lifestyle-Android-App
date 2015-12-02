@@ -1,15 +1,17 @@
 package pl.com.healthylifestyle.healthylifestyle;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 
+import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 
 import java.util.List;
@@ -29,15 +31,13 @@ public class TargetListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_target_list);
         getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
-        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
 
         initFields();
     }
 
     private void initFields() {
         this.targets = new Select().from(Target.class).execute();
-        prepareTestData(); //TODO remove before Go Live
+        prepareTestData(); //TODO remove
 
         this.targetsAdapter = new TargetAdapter(this, android.R.layout.simple_list_item_1, targets);
         setListAdapter(targetsAdapter);
@@ -65,13 +65,37 @@ public class TargetListActivity extends ListActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void removeSelectedItems() {
-        //TODO display popup
-    }
-
     private void displayMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
+    }
+
+    private void removeSelectedItems() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(TargetListActivity.this);
+        alert.setMessage("Are you sure to delete selected items?");
+        alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int size = getListAdapter().getCount();
+                for(int i=0; i<size; i++){
+                    View v = getListView().getChildAt(i);
+                    CheckedTextView item = (CheckedTextView) v.findViewById(R.id.target_custom_row);
+                    if (item.isChecked()){
+                        new Delete().from(Target.class).where("Id = ?", targets.get(i).getId()).execute();
+                    }
+                    getListView().setItemChecked(i, false);
+                }
+                recreate();
+                dialog.dismiss();
+            }
+        });
+        alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 
     @Override
@@ -85,14 +109,14 @@ public class TargetListActivity extends ListActivity {
         this.startActivity(intent);
     }
 
-    //TODO remove before Go Live
     private void prepareTestData(){
         if(targets.size() == 0){
-            targets.add(new Target("Loose weight", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 80, 90));
-            targets.add(new Target("Run km", "Suspendisse eget rutrum tortor, in ornare nisl.", 150, 0));
-            targets.add(new Target("Eat carrot", "Ut eget erat sit amet sapien tincidunt commodo eget ac quam.", 30, 0));
-            targets.add(new Target("Go to jym", "Aliquam vel nunc nulla.",10, 0));
-            targets.add(new Target("Swim minutes", "Praesent euismod ut enim eget ultricies.", 100, 0));
+            new Target("Loose weight", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 80, 90).save();
+            new Target("Run km", "Suspendisse eget rutrum tortor, in ornare nisl.", 150, 0).save();
+            new Target("Eat carrot", "Ut eget erat sit amet sapien tincidunt commodo eget ac quam.", 30, 0).save();
+            new Target("Go to jym", "Aliquam vel nunc nulla.",10, 0).save();
+            new Target("Swim minutes", "Praesent euismod ut enim eget ultricies.", 100, 0).save();
+            targets = new Select().from(Target.class).execute();
         }
     }
 

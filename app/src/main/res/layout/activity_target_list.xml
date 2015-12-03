@@ -13,7 +13,7 @@
         android:id="@+id/addNewTargetButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add new"
+        android:text="@string/activity_target_add_new"
         android:layout_gravity="left|top"
         android:onClick="addTargetEvent" />
 

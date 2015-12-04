@@ -1,8 +1,10 @@
 package pl.com.healthylifestyle.healthylifestyle;
 
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -143,6 +145,23 @@ public class TargetEditActivity extends ActionBarActivity {
 
         myTarget.save();
     }
+
+
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        TargetEditActivity.this.finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
 
     private void displayMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);

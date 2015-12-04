@@ -21,7 +21,7 @@ public class TargetAdapter extends ArrayAdapter<Target> {
     private List<Target> targetList;
     private Context context;
 
-    public TargetAdapter (Context context, int resource, List<Target> objects) {
+    public TargetAdapter(Context context, int resource, List<Target> objects) {
         super(context, resource, objects);
         this.context = context;
         this.targetList = objects;
@@ -46,10 +46,16 @@ public class TargetAdapter extends ArrayAdapter<Target> {
         int progressPercentage = 0;
 
         if (eItem.getCurrentValue() != 0 && eItem.getDesiredValue() != 0) {
-            progressPercentage = (int)Math.floor(eItem.getCurrentValue() / eItem.getDesiredValue() * 100);
+            progressPercentage = (int) Math.floor(eItem.getCurrentValue() / eItem.getDesiredValue() * 100);
         }
 
-        targetItemHolder.name.setText(new StringBuilder().append(eItem.getName()).append(" ").append(progressPercentage).append("%").toString());
+        String finishedInfo = "";
+
+        if (progressPercentage >= 100) {
+            finishedInfo = " [finished!]";
+        }
+
+        targetItemHolder.name.setText(new StringBuilder().append(eItem.getName()).append(" ").append(progressPercentage).append("%").append(finishedInfo).toString());
 
         return view;
     }

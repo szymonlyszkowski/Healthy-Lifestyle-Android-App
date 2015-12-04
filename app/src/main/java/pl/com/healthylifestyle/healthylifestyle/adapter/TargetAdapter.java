@@ -13,6 +13,7 @@ import java.util.List;
 import pl.com.healthylifestyle.healthylifestyle.R;
 import pl.com.healthylifestyle.healthylifestyle.model.Target;
 
+
 /**
  * @author alisowsk
  */
@@ -41,7 +42,14 @@ public class TargetAdapter extends ArrayAdapter<Target> {
         }
 
         Target eItem = this.targetList.get(position);
-        targetItemHolder.name.setText(eItem.getName());
+
+        int progressPercentage = 0;
+
+        if (eItem.getCurrentValue() != 0 && eItem.getDesiredValue() != 0) {
+            progressPercentage = (int)Math.floor(eItem.getCurrentValue() / eItem.getDesiredValue() * 100);
+        }
+
+        targetItemHolder.name.setText(new StringBuilder().append(eItem.getName()).append(" ").append(progressPercentage).append("%").toString());
 
         return view;
     }

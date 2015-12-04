@@ -1,7 +1,11 @@
 package pl.com.healthylifestyle.healthylifestyle;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,17 +17,29 @@ import pl.com.healthylifestyle.healthylifestyle.model.Target;
 /**
  * @author alisowsk
  */
-public class TargetAddNewActivity extends ActionBarActivity {
+public class TargetEditActivity extends ActionBarActivity {
     private EditText nameEditText;
     private EditText descriptionEditText;
     private EditText currentValueEditText;
     private EditText desiredValueEditText;
+    private Target myTarget;
+    private boolean newTarget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_target_add_new);
         getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.getSerializable("target") != null) {
+            myTarget = (Target) bundle.getSerializable("target");
+        }
+        if (myTarget == null) {
+            myTarget = new Target();
+            newTarget = true;
+        } else {
+            newTarget = false;
+        }
 
         initFields();
     }
@@ -33,6 +49,13 @@ public class TargetAddNewActivity extends ActionBarActivity {
         descriptionEditText = (EditText) findViewById(R.id.descriptionEditText);
         currentValueEditText = (EditText) findViewById(R.id.currentValueEditText);
         desiredValueEditText = (EditText) findViewById(R.id.desiredValueEditText);
+
+        if (!newTarget) {
+            nameEditText.setText(myTarget.getName());
+            descriptionEditText.setText(myTarget.getDescription());
+            currentValueEditText.setText(String.valueOf(myTarget.getCurrentValue()));
+            desiredValueEditText.setText(String.valueOf(myTarget.getDesiredValue()));
+        }
     }
 
     @Override
@@ -97,8 +120,28 @@ public class TargetAddNewActivity extends ActionBarActivity {
         }
         double currentValue = Double.valueOf(currentValueEditText.getText().toString());
         double desiredValue = Double.valueOf(desiredValueEditText.getText().toString());
-        Target newTarget = new Target(name, description, currentValue, desiredValue);
-        newTarget.save();
+
+        myTarget.setCurrentValue(currentValue);
+        myTarget.setDesiredValue(desiredValue);
+        myTarget.setDescription(description);
+        myTarget.setName(name);
+
+        if (desiredValue < currentValue) {
+            Notification notification = new NotificationCompat.Builder(this)
+                    .setContentTitle("Target finished!")
+                    .setContentText("Target " + myTarget.getName() + " has been finished!")
+                    .setSmallIcon(R.drawable.app_notification_icon)
+                    .build();
+
+            NotificationManager mNotificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+            int notificationId = 1;
+            mNotificationManager.notify(notificationId, notification);
+        }
+
+        myTarget.save();
     }
 
     private void displayMainActivity(){

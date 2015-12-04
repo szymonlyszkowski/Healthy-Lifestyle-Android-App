@@ -34,7 +34,7 @@
             <!-- TODO investigate how to add the same menu as in ActionBarActivity -->
         </activity>
         <activity
-            android:name=".TargetAddNewActivity"
+            android:name=".TargetEditActivity"
             android:label="@string/activity_target_add_new_title">
         </activity>
     </application>

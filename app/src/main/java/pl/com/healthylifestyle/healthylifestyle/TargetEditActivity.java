@@ -103,27 +103,6 @@ public class TargetEditActivity extends ActionBarActivity {
         return checkedPostion;
     }
 
-//    public void editTargetEvent(){
-//        if(validate()){
-//           editTarget();
-//            displayTargetListActivity();
-//        }
-//        ArrayList<Integer> checkedIntemsOfTargetList = getCheckedIntemsOfTargetList(list);
-//
-//        for(Integer position: checkedIntemsOfTargetList){
-//            Target targetPostion = (Target) list.getAdapter().getItem(position);
-//            if(myTarget.name == targetPostion.name){
-////                tar`
-//            }
-//
-//        }
-
-//    }
-
-    private void editTarget() {
-
-
-    }
 
     private boolean validate() {
         //TODO extract class, maybe find some nice way to validate - library with annotations?

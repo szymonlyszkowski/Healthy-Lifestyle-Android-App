@@ -1,3 +1,5 @@
+
+
 # Built application files
 *.apk
 *.ap_
@@ -28,5 +30,6 @@ proguard/
 
 #IntelliJ files
 *.idea/
+*.iml
 
 *.bat

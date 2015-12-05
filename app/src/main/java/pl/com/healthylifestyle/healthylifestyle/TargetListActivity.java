@@ -101,11 +101,16 @@ public class TargetListActivity extends ListActivity {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         //TODO open "modify window"
-        System.out.println("To be implemented - modify target " + targets.get(position).getName());
+        //System.out.println("To be implemented - modify target " + targets.get(position).getName());
+        Intent intent = new Intent(this, TargetEditActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("target", targets.get(position));
+        intent.putExtras(bundle);
+        this.startActivity(intent);
     }
 
     public void addTargetEvent(View v) {
-        Intent intent = new Intent(this, TargetAddNewActivity.class);
+        Intent intent = new Intent(this, TargetEditActivity.class);
         this.startActivity(intent);
     }
 

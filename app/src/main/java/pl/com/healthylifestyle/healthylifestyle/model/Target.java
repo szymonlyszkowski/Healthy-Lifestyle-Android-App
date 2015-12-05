@@ -4,6 +4,7 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
  * @author alisowsk
  */
 @Table(name = "target")
-public class Target extends Model {
+public class Target extends Model implements Serializable {
 
     @Column
     public String name;

@@ -16,11 +16,15 @@
     <!-- TARGET MODULE START -->
     <string name="activity_target_list_title">Target Module</string>
     <string name="activity_target_add_new">Add new</string>
+    <string name="activity_target_edit">Edit target</string>
     <string name="activity_target_add_new_title">Add new target</string>
     <string name="activity_target_add_new_name">Name</string>
     <string name="activity_target_add_new_description">Description</string>
     <string name="activity_target_add_new_current_value">Current value</string>
     <string name="activity_target_add_new_desired_value">Desired value</string>
     <string name="activity_target_add_new_save">Save</string>
+    <string name="title_activity_target_edit_list_activty">TargetEditListActivty</string>
+
+    <string name="hello_world">Hello world!</string>
     <!-- TARGET MODULE END -->
 </resources>

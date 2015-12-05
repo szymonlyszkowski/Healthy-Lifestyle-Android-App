@@ -13,6 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import pl.com.healthylifestyle.healthylifestyle.model.Target;
 
@@ -87,6 +90,39 @@ public class TargetEditActivity extends ActionBarActivity {
             saveTarget();
             displayTargetListActivity();
         }
+    }
+
+    private ArrayList getCheckedIntemsOfTargetList(ListView list){
+        int itemsAmount = list.getAdapter().getCount();
+        ArrayList<Integer> checkedPostion = new ArrayList();
+        for (int position=0; position<itemsAmount; ++position){
+            if(list.isItemChecked(position)){
+               checkedPostion.add(position);
+            }
+        }
+        return checkedPostion;
+    }
+
+//    public void editTargetEvent(){
+//        if(validate()){
+//           editTarget();
+//            displayTargetListActivity();
+//        }
+//        ArrayList<Integer> checkedIntemsOfTargetList = getCheckedIntemsOfTargetList(list);
+//
+//        for(Integer position: checkedIntemsOfTargetList){
+//            Target targetPostion = (Target) list.getAdapter().getItem(position);
+//            if(myTarget.name == targetPostion.name){
+////                tar`
+//            }
+//
+//        }
+
+//    }
+
+    private void editTarget() {
+
+
     }
 
     private boolean validate() {

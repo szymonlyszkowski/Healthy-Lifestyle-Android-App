@@ -17,12 +17,20 @@
         android:layout_gravity="left|top"
         android:onClick="addTargetEvent" />
 
+    <Button
+        android:id="@+id/editTargetButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_target_edit"
+        android:layout_gravity="center_horizontal"
+        android:onClick="editTargetEvent" />
+
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:id="@android:id/list"
         android:layout_gravity="left|top"
         tools:listitem="@android:layout/simple_list_item_multiple_choice"
-        android:choiceMode="multipleChoice" />
+        android:choiceMode="singleChoice" />
 
 </LinearLayout>

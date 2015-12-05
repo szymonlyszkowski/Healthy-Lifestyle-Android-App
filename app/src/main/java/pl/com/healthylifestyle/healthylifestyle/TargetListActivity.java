@@ -114,6 +114,11 @@ public class TargetListActivity extends ListActivity {
         this.startActivity(intent);
     }
 
+    public void editTargetEvent(View v) {
+        Intent intent = new Intent(this, TargetEditListActivty.class);
+        this.startActivity(intent);
+    }
+
     private void prepareTestData(){
         if(targets.size() == 0){
             new Target("Loose weight", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 80, 90).save();

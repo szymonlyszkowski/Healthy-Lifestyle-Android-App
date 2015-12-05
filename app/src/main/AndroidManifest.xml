@@ -7,7 +7,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <meta-data
             android:name="AA_DB_NAME"
             android:value="healthyLifestyle.db" />
@@ -20,6 +19,7 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,12 +30,21 @@
         <activity
             android:name=".TargetListActivity"
             android:label="@string/activity_target_list_title"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+
             <!-- TODO investigate how to add the same menu as in ActionBarActivity -->
         </activity>
         <activity
             android:name=".TargetEditActivity"
-            android:label="@string/activity_target_add_new_title">
+            android:label="@string/activity_target_add_new_title" >
+        </activity>
+        <activity
+            android:name=".TargetEditListActivty"
+            android:label="@string/title_activity_target_edit_list_activty"
+            android:parentActivityName=".TargetListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="pl.com.healthylifestyle.healthylifestyle.TargetListActivity" />
         </activity>
     </application>
 

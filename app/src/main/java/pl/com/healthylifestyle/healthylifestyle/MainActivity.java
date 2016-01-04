@@ -96,7 +96,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void displayMealMenuActivity(){
-        Intent intent = new Intent(this, MealMenuActivity.class);
+        Intent intent = new Intent(this, MealMenuListActivity.class);
         this.startActivity(intent);
     }
 

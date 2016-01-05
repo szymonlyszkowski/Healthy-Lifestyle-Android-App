@@ -16,13 +16,15 @@
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Remove Meal Menu"
-            android:id="@+id/button2"/>
+            android:text="Remove Selected Meal"
+            android:id="@+id/remove_meal_button"/>
     <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="507dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             tools:listitem="@android:layout/simple_list_item_multiple_choice"
             android:id="@android:id/list"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:drawSelectorOnTop="false"
 
-            />
+            android:clickable="true" android:choiceMode="multipleChoice"/>
 </LinearLayout>

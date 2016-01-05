@@ -1,23 +1,23 @@
 package pl.com.healthylifestyle.healthylifestyle;
 
 import android.app.ListActivity;
-import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.Button;
 import com.activeandroid.query.Select;
 import pl.com.healthylifestyle.healthylifestyle.adapter.MealAdapter;
-import pl.com.healthylifestyle.healthylifestyle.adapter.TargetAdapter;
 import pl.com.healthylifestyle.healthylifestyle.model.Meal;
-import pl.com.healthylifestyle.healthylifestyle.model.Target;
 
 import java.util.Date;
 import java.util.List;
 
 public class MealMenuListActivity extends ListActivity {
 
-    private List mealsList;
+    private List<Meal> mealsList;
     private MealAdapter mealsListAdapter;
 
     @Override
@@ -25,7 +25,10 @@ public class MealMenuListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_menu_layout);
         getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
+        getListView().setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         initFields();
+        createMealRemoval();
+
     }
 
     private void initFields() {
@@ -67,8 +70,34 @@ public class MealMenuListActivity extends ListActivity {
             new Meal("Meal 3", "Description of meal 3 ",new Date(),300.50, 10 ).save();
             new Meal("Meal 4", "Description of meal 4 ",new Date(),4000.10, 10 ).save();
             new Meal("Meal 5", "Description of meal 5 ",new Date(),50.50, 10 ).save();
-            mealsList = new Select().from(Target.class).execute();
+            mealsList = new Select().from(Meal.class).execute();
         }
     }
+
+
+
+    private void createMealRemoval(){
+        /** Defining a click event listener for the button "Delete" */
+        View.OnClickListener listenerDel = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /** Getting the checked items from the listview */
+                SparseBooleanArray checkedItemPositions = getListView().getCheckedItemPositions();
+                int itemCount = getListView().getCount();
+
+                for(int i=itemCount-1; i >= 0; i--){
+                    if(checkedItemPositions.get(i)){
+                        mealsListAdapter.remove(mealsList.get(i));
+                    }
+                }
+                checkedItemPositions.clear();
+                mealsListAdapter.notifyDataSetChanged();
+            }
+        };
+        Button btnDel = (Button) findViewById(R.id.remove_meal_button);
+        btnDel.setOnClickListener(listenerDel);
+    }
+
+
 
 }

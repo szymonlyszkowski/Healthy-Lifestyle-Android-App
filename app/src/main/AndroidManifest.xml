@@ -35,7 +35,7 @@
             <!-- TODO investigate how to add the same menu as in ActionBarActivity -->
         </activity>
         <activity
-            android:name=".TargetEditActivity"
+            android:name=".TargetAddActivity"
             android:label="@string/activity_target_add_new_title" >
         </activity>
         <activity
@@ -45,6 +45,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pl.com.healthylifestyle.healthylifestyle.TargetListActivity" />
+        </activity>
+        <activity
+            android:name=".MealAddActivity"
+            android:label="@string/title_activity_meal_add"
+            android:parentActivityName=".MealMenuListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="pl.com.healthylifestyle.healthylifestyle.MealMenuListActivity" />
         </activity>
     </application>
 

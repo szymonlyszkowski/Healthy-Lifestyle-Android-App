@@ -22,7 +22,7 @@ import pl.com.healthylifestyle.healthylifestyle.model.Target;
 /**
  * @author alisowsk
  */
-public class TargetEditActivity extends ActionBarActivity {
+public class TargetAddActivity extends ActionBarActivity {
     private EditText nameEditText;
     private EditText descriptionEditText;
     private EditText currentValueEditText;
@@ -170,7 +170,7 @@ public class TargetEditActivity extends ActionBarActivity {
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        TargetEditActivity.this.finish();
+                        TargetAddActivity.this.finish();
                     }
                 })
                 .setNegativeButton("No", null)

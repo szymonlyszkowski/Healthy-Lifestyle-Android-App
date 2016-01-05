@@ -5,7 +5,6 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -103,7 +102,7 @@ public class TargetListActivity extends ListActivity {
     public void onListItemClick(ListView l, View v, int position, long id) {
         //TODO open "modify window"
         //System.out.println("To be implemented - modify target " + targets.get(position).getName());
-        Intent intent = new Intent(this, TargetEditActivity.class);
+        Intent intent = new Intent(this, TargetAddActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("target", targets.get(position));
         intent.putExtras(bundle);
@@ -111,7 +110,7 @@ public class TargetListActivity extends ListActivity {
     }
 
     public void addTargetEvent(View v) {
-        Intent intent = new Intent(this, TargetEditActivity.class);
+        Intent intent = new Intent(this, TargetAddActivity.class);
         this.startActivity(intent);
     }
 

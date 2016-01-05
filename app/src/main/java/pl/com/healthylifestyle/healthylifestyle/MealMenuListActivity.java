@@ -1,6 +1,7 @@
 package pl.com.healthylifestyle.healthylifestyle;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
@@ -12,12 +13,13 @@ import com.activeandroid.query.Select;
 import pl.com.healthylifestyle.healthylifestyle.adapter.MealAdapter;
 import pl.com.healthylifestyle.healthylifestyle.model.Meal;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class MealMenuListActivity extends ListActivity {
 
-    private List<Meal> mealsList;
+    private List<Meal> mealsList = new ArrayList<>();;
     private MealAdapter mealsListAdapter;
 
     @Override
@@ -26,15 +28,16 @@ public class MealMenuListActivity extends ListActivity {
         setContentView(R.layout.activity_meal_menu_layout);
         getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
         getListView().setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+        mealsList = new Select().from(Meal.class).execute();
+        prepareTestData();
         initFields();
         createMealRemoval();
+        createMealAddition();
 
     }
 
     private void initFields() {
-        this.mealsList = new Select().from(Meal.class).execute();
-        prepareTestData(); //TODO remove
-
+//        prepareTestData(); //TODO remove
         this.mealsListAdapter = new MealAdapter(this, android.R.layout.simple_list_item_1, mealsList);
         setListAdapter(mealsListAdapter);
     }
@@ -64,6 +67,7 @@ public class MealMenuListActivity extends ListActivity {
     }
 
     private void prepareTestData(){
+
         if(mealsList.size() == 0){
             new Meal("Meal 1", "Description of meal 1 ",new Date(),100.2, 10 ).save();
             new Meal("Meal 2", "Description of meal 2 ",new Date(),200.0, 10 ).save();
@@ -96,6 +100,24 @@ public class MealMenuListActivity extends ListActivity {
         };
         Button btnDel = (Button) findViewById(R.id.remove_meal_button);
         btnDel.setOnClickListener(listenerDel);
+    }
+
+
+    private void createMealAddition(){
+         View.OnClickListener listenerAddMeal = new View.OnClickListener(){
+             @Override
+         public void onClick(View v){
+
+                 displayAddMealActivity();
+             }
+         };
+        Button buttonAddMeal = (Button) findViewById(R.id.add_meal_menu_button);
+        buttonAddMeal.setOnClickListener(listenerAddMeal);
+    }
+
+    private void displayAddMealActivity(){
+        Intent intent = new Intent(this, MealAddActivity.class);
+        this.startActivity(intent);
     }
 
 

@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Meal Menu"
-            android:id="@+id/button"/>
+            android:id="@+id/add_meal_menu_button"/>
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

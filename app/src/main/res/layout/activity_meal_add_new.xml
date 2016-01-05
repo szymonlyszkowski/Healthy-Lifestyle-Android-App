@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:weightSum="1">
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/meal_name_edit_text" android:autoText="true" android:text="Meal Name" android:clickable="true"
+            android:editable="true"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/meal_calories_edit_text" android:text="Calories Amount" android:clickable="true" android:editable="true"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/meal_start_date_edit_text" android:text="Meal Start Date" android:editable="true" android:clickable="true"/>
+    <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/meal_gi_edit_text" android:text="GI" android:clickable="true" android:editable="true"/>
+    <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/meal_description_edit_text" android:clickable="true" android:editable="true" android:text="Meal Description"/>
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Meal"
+            android:id="@+id/save_meal_button"
+            android:onClick="saveMealPublic"
+            android:layout_gravity="center_horizontal"/>
+</LinearLayout >
+

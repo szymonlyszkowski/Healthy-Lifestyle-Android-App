@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by szymonidas on 04.01.16.
  */
-@Table(name = "target")
+@Table(name = "meal")
 public class Meal extends Model implements Serializable{
 
 
@@ -28,7 +28,7 @@ public class Meal extends Model implements Serializable{
 
     public Meal(String name, String description, Date startMealTime, Double caloriesAmount, int GI) {
         this.name = name;
-        Description = description;
+        this.description = description;
         this.startMealTime = startMealTime;
         this.caloriesAmount = caloriesAmount;
         this.GI = GI;
@@ -37,7 +37,7 @@ public class Meal extends Model implements Serializable{
     @Column
     private String name;
     @Column
-    private String Description;
+    private String description;
     @Column
     private Date startMealTime;
     @Column
@@ -46,11 +46,11 @@ public class Meal extends Model implements Serializable{
     private int GI;
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public Double getCaloriesAmount() {

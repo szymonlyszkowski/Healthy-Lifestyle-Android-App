@@ -25,34 +25,30 @@
         </activity>
         <activity
             android:name=".MealMenuListActivity"
-            android:label="@string/title_activity_meal_menu" >
+            android:label="@string/title_activity_meal_menu"
+            android:theme="@style/ListActivityTheme"
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity
             android:name=".TargetListActivity"
             android:label="@string/activity_target_list_title"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
-
-            <!-- TODO investigate how to add the same menu as in ActionBarActivity -->
+            android:theme="@style/ListActivityTheme"
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity
             android:name=".TargetAddActivity"
-            android:label="@string/activity_target_add_new_title" >
+            android:label="@string/activity_target_add_new_title"
+            android:parentActivityName=".TargetListActivity" >
         </activity>
         <activity
             android:name=".TargetEditListActivty"
             android:label="@string/title_activity_target_edit_list_activty"
             android:parentActivityName=".TargetListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="pl.com.healthylifestyle.healthylifestyle.TargetListActivity" />
         </activity>
         <activity
             android:name=".MealAddActivity"
             android:label="@string/title_activity_meal_add"
             android:parentActivityName=".MealMenuListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="pl.com.healthylifestyle.healthylifestyle.MealMenuListActivity" />
         </activity>
     </application>
 

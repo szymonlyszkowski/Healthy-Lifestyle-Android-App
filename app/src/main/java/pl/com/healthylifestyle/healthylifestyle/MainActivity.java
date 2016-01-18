@@ -8,6 +8,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -48,7 +49,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
         // enables the activity icon as a 'home' button. required if "android:targetSdkVersion" > 14
 //        getActionBar().setHomeButtonEnabled(true);
 
@@ -61,6 +61,9 @@ public class MainActivity extends ActionBarActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         ActiveAndroid.initialize(this);
+
+
+
     }
 
     @Override
@@ -119,6 +122,16 @@ public class MainActivity extends ActionBarActivity {
 
         List<TestPersistableEntity> result = new Select().from(TestPersistableEntity.class).execute();
         System.out.println(result);
+    }
+
+    public void redirectToMeals(View view) {
+        Intent intent = new Intent(this, MealMenuListActivity.class);
+        this.startActivity(intent);
+    }
+
+    public void redirectToTargets(View view) {
+        Intent intent = new Intent(this, TargetListActivity.class);
+        this.startActivity(intent);
     }
 
     public void displayTestNotification(View view) {

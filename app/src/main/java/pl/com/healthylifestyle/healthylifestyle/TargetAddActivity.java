@@ -34,7 +34,6 @@ public class TargetAddActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_target_add_new);
-        getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.getSerializable("target") != null) {
             myTarget = (Target) bundle.getSerializable("target");

@@ -7,12 +7,15 @@
     android:layout_height="match_parent"
     android:layout_gravity="top|center_horizontal"
     android:orientation="vertical"
-    tools:context=".TargetEditActivity">
+    tools:context=".TargetEditActivity"
+    android:background="@drawable/background"
+    >
 
     <EditText android:id="@+id/nameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/activity_target_add_new_name" />
+        android:hint="@string/activity_target_add_new_name"
+        style="@style/TextBoxStyle"/>
 
     <EditText android:id="@+id/descriptionEditText"
         android:layout_width="wrap_content"
@@ -22,22 +25,27 @@
         android:lines="8"
         android:minLines="6"
         android:maxLines="10"
-        android:hint="@string/activity_target_add_new_description" />
+        android:hint="@string/activity_target_add_new_description"
+        style="@style/TextBoxStyle"/>
 
     <EditText android:id="@+id/currentValueEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/activity_target_add_new_current_value" />
+        android:hint="@string/activity_target_add_new_current_value"
+        android:inputType="numberDecimal"
+        style="@style/TextBoxStyle"/>
 
     <EditText android:id="@+id/desiredValueEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/activity_target_add_new_desired_value" />
+        android:hint="@string/activity_target_add_new_desired_value"
+        android:inputType="numberDecimal"
+        style="@style/TextBoxStyle"/>
 
     <Button android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/activity_target_add_new_save"
-        android:onClick="addTargetEvent" />
+        android:onClick="addTargetEvent"
+        style="@style/SubmitButtonStyle"
+        />
 
 </LinearLayout>

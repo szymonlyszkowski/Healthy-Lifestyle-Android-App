@@ -30,7 +30,6 @@ public class TargetListActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_target_list);
-        getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
 
         initFields();
     }
@@ -129,7 +128,5 @@ public class TargetListActivity extends ListActivity {
             targets = new Select().from(Target.class).execute();
         }
     }
-
-
 
 }

@@ -30,7 +30,6 @@ public class TargetEditListActivty extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_target_edit_list);
-        getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
     }
 
     @Override

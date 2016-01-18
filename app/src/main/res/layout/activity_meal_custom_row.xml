@@ -19,7 +19,9 @@
                     android:layout_height="fill_parent"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Text"
-                    android:id="@+id/textView"/>
+                    android:id="@+id/textView"
+                    android:textColor="@color/darkpurple"
+                />
         </TableRow>
     </TableLayout>
 </LinearLayout>

@@ -26,6 +26,6 @@
     <string name="title_activity_target_edit_list_activty">TargetEditListActivty</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_meal_add">MealAddActivity</string>
+    <string name="title_activity_meal_add">Add new meal</string>
     <!-- TARGET MODULE END -->
 </resources>

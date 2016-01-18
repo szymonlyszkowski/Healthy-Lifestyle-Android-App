@@ -26,7 +26,6 @@ public class MealMenuListActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_menu_layout);
-        getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
         getListView().setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         mealsList = new Select().from(Meal.class).execute();
         prepareTestData();
@@ -45,8 +44,6 @@ public class MealMenuListActivity extends ListActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items
-        // to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_meal_menu, menu);
         return true;
     }

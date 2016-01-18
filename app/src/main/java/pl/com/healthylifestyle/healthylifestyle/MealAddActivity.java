@@ -27,7 +27,6 @@ public class MealAddActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_add_new);
-        getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
         prepareMealObject();
         init_meal_addition_fields();
         //setSaveMealButtonListener();

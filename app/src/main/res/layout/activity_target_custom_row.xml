@@ -6,4 +6,5 @@
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:id="@+id/target_custom_row"
     android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+    android:textColor="@color/darkpurple"
     />

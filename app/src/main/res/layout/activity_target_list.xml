@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/action_target_module"
@@ -7,30 +7,29 @@
     android:layout_height="match_parent"
     android:layout_gravity="top|center_horizontal"
     android:orientation="vertical"
-    tools:context=".TargetListActivity">
+    tools:context=".TargetListActivity"
+    android:background="@drawable/background"
+    >
 
     <Button
         android:id="@+id/addNewTargetButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/activity_target_add_new"
-        android:layout_gravity="left|top"
-        android:onClick="addTargetEvent" />
+        android:onClick="addTargetEvent"
+        android:layout_marginTop="20sp"
+        style="@style/SubmitButtonStyle"/>
 
     <Button
         android:id="@+id/editTargetButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/activity_target_edit"
-        android:layout_gravity="center_horizontal"
-        android:onClick="editTargetEvent" />
+        android:onClick="editTargetEvent"
+        android:layout_below="@+id/addNewTargetButton"
+        style="@style/SubmitButtonStyle"/>
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
         android:id="@android:id/list"
-        android:layout_gravity="left|top"
-        tools:listitem="@android:layout/simple_list_item_multiple_choice"
-        android:choiceMode="singleChoice" />
+        android:choiceMode="singleChoice"
+        android:layout_below="@+id/editTargetButton"
+        style="@style/ListStyle"
+        />
 
-</LinearLayout>
+</RelativeLayout>

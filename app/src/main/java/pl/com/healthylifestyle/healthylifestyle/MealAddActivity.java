@@ -6,19 +6,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import pl.com.healthylifestyle.healthylifestyle.model.Meal;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MealAddActivity extends ActionBarActivity {
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd/HH-mm");
 
     private EditText mealNameEditText;
     private EditText mealCaloriesEditText;
     private EditText mealDescriptionEditText;
     private EditText mealGIEditText;
     private EditText mealStartDate;
+    private EditText mealReminderDate;
     private Meal myMeal;
     private boolean newMeal;
 
@@ -27,7 +30,6 @@ public class MealAddActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_add_new);
-        getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
         prepareMealObject();
         init_meal_addition_fields();
         //setSaveMealButtonListener();
@@ -57,12 +59,23 @@ public class MealAddActivity extends ActionBarActivity {
         String name = mealNameEditText.getText().toString();
         String description = mealDescriptionEditText.getText().toString();
         int GI = Integer.parseInt(mealGIEditText.getText().toString());
-        Date startDate = new Date();
+        Date startDate = null;
+        try {
+            startDate = DATE_FORMAT.parse(mealStartDate.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Double calories = Double.parseDouble(mealCaloriesEditText.getText().toString());
         if(null != mealDescriptionEditText.getText() && mealDescriptionEditText.getText().toString().isEmpty()){
             description = mealDescriptionEditText.getText().toString();
         }
-
+        Date reminderDate = null;
+        if(null != mealReminderDate.getText() && !mealReminderDate.getText().toString().isEmpty()) {
+            try {
+                reminderDate = DATE_FORMAT.parse(String.valueOf(mealReminderDate.getText().toString()));
+            } catch (ParseException e) {
+            }
+        }
 
         myMeal.setName(name);
         myMeal.setDescription(description);
@@ -70,6 +83,7 @@ public class MealAddActivity extends ActionBarActivity {
         myMeal.setDescription(description);
         myMeal.setCaloriesAmount(calories);
         myMeal.setStartMealTime(startDate);
+        myMeal.setReminder(reminderDate);
         myMeal.save();
     }
 
@@ -79,6 +93,7 @@ public class MealAddActivity extends ActionBarActivity {
         mealDescriptionEditText = (EditText) findViewById(R.id.meal_description_edit_text);
         mealGIEditText = (EditText) findViewById(R.id.meal_gi_edit_text);
         mealStartDate = (EditText) findViewById(R.id.meal_start_date_edit_text);
+        mealReminderDate = (EditText) findViewById(R.id.meal_reminder_date_edit_text);
     }
 
     @Override
@@ -107,9 +122,61 @@ public class MealAddActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void saveMealPublic(){
-        saveMeal();
-        displayMealMenuListActivity();
+    public void saveMealPublic(View v){
+        if(validate()){
+            saveMeal();
+            displayMealMenuListActivity();
+        }
+    }
+
+    private boolean validate() {
+        //TODO extract class, maybe find some nice way to validate - library with annotations?
+        if(null == mealNameEditText.getText() || mealNameEditText.getText().toString().isEmpty()){
+            mealNameEditText.setError("Name field cannot be empty");
+            return false;
+        }
+        if(null == mealNameEditText.getText() || mealNameEditText.getText().toString().isEmpty()){
+            mealNameEditText.setError("Current value field cannot be empty");
+            return false;
+        }
+        if(!mealCaloriesEditText.getText().toString().matches("^[1-9]\\d*(\\.\\d+)?$")){
+            mealCaloriesEditText.setError("Current value has to be number");
+            return false;
+        }
+        if(null == mealDescriptionEditText.getText() || mealDescriptionEditText.getText().toString().isEmpty()){
+            mealDescriptionEditText.setError("Meal description field cannot be empty");
+            return false;
+        }
+        if(null == mealGIEditText.getText() || mealGIEditText.getText().toString().isEmpty()){
+            mealGIEditText.setError("GI field field cannot be empty");
+            return false;
+        }
+        if(!mealGIEditText.getText().toString().matches("^[1-9]\\d*(\\.\\d+)?$")){
+            mealGIEditText.setError("GI value has to be number");
+            return false;
+        }
+        if(null == mealStartDate.getText() || mealStartDate.getText().toString().isEmpty()){
+            mealStartDate.setError("Meal start date field cannot be empty");
+            return false;
+        }
+
+        try {
+            DATE_FORMAT.parse(String.valueOf(mealStartDate.getText()));
+        } catch (ParseException e) {
+            mealStartDate.setError("Meal start date has to be in format yyyy-MM-dd/HH-mm");
+            return false;
+        }
+
+        if(null != mealReminderDate.getText() && !mealReminderDate.getText().toString().isEmpty()) {
+            try {
+                DATE_FORMAT.parse(String.valueOf(mealReminderDate.getText()));
+            } catch (ParseException e) {
+                mealReminderDate.setError("Meal start date has to be in format yyyy-MM-dd/HH-mm");
+                return false;
+            }
+        }
+
+        return true;
     }
 //    private void setSaveMealButtonListener(){
 //        View.OnClickListener listenerSave = new View.OnClickListener() {

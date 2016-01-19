@@ -1,32 +1,56 @@
 package pl.com.healthylifestyle.healthylifestyle;
 
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.support.v7.app.NotificationCompat;
+import android.text.InputType;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.CheckedTextView;
+import android.widget.EditText;
+
+import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import pl.com.healthylifestyle.healthylifestyle.adapter.MealAdapter;
 import pl.com.healthylifestyle.healthylifestyle.model.Meal;
+import pl.com.healthylifestyle.healthylifestyle.model.Target;
+import pl.com.healthylifestyle.healthylifestyle.util.NotificationUtil;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 public class MealMenuListActivity extends ListActivity {
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd/HH-mm");
 
-    private List<Meal> mealsList = new ArrayList<>();;
+    private List<Meal> mealsList = new ArrayList<>();
     private MealAdapter mealsListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_menu_layout);
-        getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.healty_green));
         getListView().setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         mealsList = new Select().from(Meal.class).execute();
         prepareTestData();
@@ -38,15 +62,13 @@ public class MealMenuListActivity extends ListActivity {
 
     private void initFields() {
 //        prepareTestData(); //TODO remove
-        this.mealsListAdapter = new MealAdapter(this, android.R.layout.simple_list_item_1, mealsList);
+        this.mealsListAdapter = new MealAdapter(this, android.R.layout.activity_list_item, mealsList);
         setListAdapter(mealsListAdapter);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items
-        // to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_meal_menu, menu);
         return true;
     }
@@ -61,10 +83,71 @@ public class MealMenuListActivity extends ListActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if(id == R.id.action_set_notification){
+            setNotification();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void setNotification() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(MealMenuListActivity.this);
+//        dialog.setTitle("Set notification");
+
+        final SparseBooleanArray checkedItemPositions = getListView().getCheckedItemPositions();
+        final int itemCount = getListView().getCount();
+        final List<Integer> mealsIndexes = new ArrayList<>();
+        final EditText input = new EditText(this);
+
+        for(int i=itemCount-1; i >= 0; i--){
+            if(checkedItemPositions.get(i)){
+                mealsIndexes.add(i);
+            }
+        }
+
+        if(mealsIndexes.size() == 0){
+            return;
+        }
+
+        input.setText("");
+//        input.set
+        input.setInputType(InputType.TYPE_CLASS_DATETIME);
+        input.setHint("yyyy-MM-dd/HH-mm");
+        dialog.setView(input);
+
+        dialog.setPositiveButton("Set", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String dateStr = input.getText().toString();
+                try {
+                    Date d = DATE_FORMAT.parse(dateStr);
+                    for (int i = 0; i < mealsIndexes.size(); i++) {
+                        Meal meal = mealsList.get(mealsIndexes.get(i));
+                        meal.setReminder(d);
+                        Notification newNotification = getNotification(meal);
+                        int notificationId = UUID.randomUUID().hashCode();
+                        meal.setNotificationId(notificationId);
+                        scheduleNotification(meal.getReminder(), newNotification, notificationId);
+                        meal.save();
+                    }
+                    recreate();
+                    dialog.dismiss();
+                } catch (ParseException e) {
+                    setNotification();
+                }
+            }
+        });
+        dialog.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
 
     private void prepareTestData(){
 
@@ -120,6 +203,27 @@ public class MealMenuListActivity extends ListActivity {
         this.startActivity(intent);
     }
 
+    private void scheduleNotification(Date notificationDate, Notification notification, int notificationId) {
+        Intent notificationIntent = new Intent(this, NotificationUtil.class);
+        notificationIntent.putExtra(NotificationUtil.NOTIFICATION_ID, notificationId);
+        notificationIntent.putExtra(NotificationUtil.NOTIFICATION, notification);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        notificationIntent.setAction("Healthy Lifestyle " + notificationId);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        long difference = notificationDate.getTime() - System.currentTimeMillis();
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + difference, pendingIntent);
+    }
+
+    private Notification getNotification(Meal meal) {
+        Notification.Builder builder = new Notification.Builder(this);
+        builder.setContentTitle("Healthy Lifestyle");
+        builder.setContentText("Remember about " + meal.getName());
+        builder.setSmallIcon(R.drawable.alarm_clock_icon);
+        builder.setWhen(meal.getReminder().getTime());
+        Notification notification = builder.build();
+        return notification;
+    }
 
 }

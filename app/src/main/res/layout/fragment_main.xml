@@ -27,20 +27,4 @@
         android:onClick="redirectToTargets"
         style="@style/MainMenuSubmitButtonStyle" />
 
-    <Button
-        android:text="Create test entity"
-        android:id="@+id/createTestEntityButton"
-        android:layout_below="@+id/targetsRedirectButton"
-        android:layout_centerHorizontal="true"
-        android:onClick="createTestEntity"
-        style="@style/MainMenuSubmitButtonStyle" />
-
-    <Button
-        android:text="Display test notification"
-        android:id="@+id/displayTestNotification"
-        android:layout_below="@+id/createTestEntityButton"
-        android:layout_centerHorizontal="true"
-        android:onClick="displayTestNotification"
-        style="@style/MainMenuSubmitButtonStyle" />
-
 </RelativeLayout>

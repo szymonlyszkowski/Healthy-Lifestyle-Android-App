@@ -93,7 +93,7 @@ public class MealMenuListActivity extends ListActivity {
 
     private void setNotification() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(MealMenuListActivity.this);
-        dialog.setTitle("Set notification");
+//        dialog.setTitle("Set notification");
 
         final SparseBooleanArray checkedItemPositions = getListView().getCheckedItemPositions();
         final int itemCount = getListView().getCount();
@@ -106,7 +106,12 @@ public class MealMenuListActivity extends ListActivity {
             }
         }
 
+        if(mealsIndexes.size() == 0){
+            return;
+        }
+
         input.setText("");
+//        input.set
         input.setInputType(InputType.TYPE_CLASS_DATETIME);
         input.setHint("yyyy-MM-dd/HH-mm");
         dialog.setView(input);

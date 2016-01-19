@@ -11,10 +11,12 @@ import pl.com.healthylifestyle.healthylifestyle.R;
 import pl.com.healthylifestyle.healthylifestyle.model.Meal;
 import pl.com.healthylifestyle.healthylifestyle.model.Target;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class MealAdapter extends ArrayAdapter<Meal> {
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     private List<Meal> mealsList;
     private Context context;
@@ -31,8 +33,8 @@ public class MealAdapter extends ArrayAdapter<Meal> {
         if (view == null) {
             mealItemHolder = new MealItemHolder();
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            view = inflater.inflate(R.layout.activity_target_custom_row, parent, false);
-            mealItemHolder.name = (TextView) view.findViewById(R.id.target_custom_row);
+            view = inflater.inflate(R.layout.activity_meal_custom_row, parent, false);
+            mealItemHolder.name = (TextView) view.findViewById(R.id.meal_custom_row);
             view.setTag(mealItemHolder);
         } else {
             mealItemHolder = (MealItemHolder) view.getTag();
@@ -45,7 +47,13 @@ public class MealAdapter extends ArrayAdapter<Meal> {
         Date startDate = eItem.getStartMealTime();
         StringBuilder rowText = new StringBuilder().append("Meal: ").append(mealName).append("\n").append("Calories: ").append(calories).append("\n")
                 .append("GI: ").append(gi)
-                .append("\n").append("Start date: ").append(startDate).append("\n").append("Meal Description: ").append(eItem.getDescription());
+                .append("\n").append("Start date: ").append(DATE_FORMAT.format(startDate)).append("\n").append("Meal Description: ").append(eItem.getDescription())
+                .append("\n").append("Reminder: ");
+        if(null != eItem.getReminder()) {
+            rowText.append(DATE_FORMAT.format(eItem.getReminder()));
+        } else {
+            rowText.append(" - ");
+        }
         mealItemHolder.name.setText(rowText);
 
         return view;

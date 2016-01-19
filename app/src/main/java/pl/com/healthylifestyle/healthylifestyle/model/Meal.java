@@ -13,14 +13,26 @@ import java.util.Date;
 @Table(name = "meal")
 public class Meal extends Model implements Serializable{
 
+    @Column
+    private String name;
 
-    public String getName() {
-        return name;
-    }
+    @Column
+    private String description;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Column
+    private Date startMealTime;
+
+    @Column
+    private Double caloriesAmount;
+
+    @Column
+    private int GI;
+
+    @Column
+    private Date reminder;
+
+    @Column
+    private int notificationId;
 
     public Meal(){
         super();
@@ -34,16 +46,13 @@ public class Meal extends Model implements Serializable{
         this.GI = GI;
     }
 
-    @Column
-    private String name;
-    @Column
-    private String description;
-    @Column
-    private Date startMealTime;
-    @Column
-    private Double caloriesAmount;
-    @Column
-    private int GI;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getDescription() {
         return description;
@@ -77,8 +86,19 @@ public class Meal extends Model implements Serializable{
         this.GI = GI;
     }
 
+    public Date getReminder() {
+        return reminder;
+    }
 
+    public void setReminder(Date reminder) {
+        this.reminder = reminder;
+    }
 
+    public int getNotificationId() {
+        return notificationId;
+    }
 
-
+    public void setNotificationId(int notificationId) {
+        this.notificationId = notificationId;
+    }
 }

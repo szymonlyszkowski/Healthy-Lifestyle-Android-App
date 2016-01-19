@@ -8,6 +8,7 @@
     <string name="meals_menu">THIS IS MENU FOR MEALS</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_set_notification">Set notification</string>
     <string name="action_home">Home</string>
     <string name="action_remove_selected_items">Delete selected</string>
     <string name="title_activity_meal_menu">Meal Menu</string>

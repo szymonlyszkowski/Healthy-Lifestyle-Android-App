@@ -50,6 +50,6 @@
             android:label="@string/title_activity_meal_add"
             android:parentActivityName=".MealMenuListActivity" >
         </activity>
+        <receiver android:process=":remote" android:name=".util.NotificationUtil"></receiver>
     </application>
-
 </manifest>

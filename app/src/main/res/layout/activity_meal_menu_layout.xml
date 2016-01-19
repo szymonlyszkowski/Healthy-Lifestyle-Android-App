@@ -12,6 +12,7 @@
     <Button
             android:text="Add Meal Menu"
             android:id="@+id/add_meal_menu_button"
+            android:layout_marginTop="20sp"
             style="@style/SubmitButtonStyle"/>
 
     <Button

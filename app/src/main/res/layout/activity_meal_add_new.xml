@@ -58,6 +58,17 @@
             android:hint="Meal Description"
             style="@style/TextBoxStyle"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="datetime"
+        android:ems="10"
+        android:id="@+id/meal_reminder_date_edit_text"
+        android:hint="Reminder Date"
+        android:editable="true"
+        android:clickable="true"
+        style="@style/TextBoxStyle"/>
+
     <Button
             android:text="Save Meal"
             android:id="@+id/save_meal_button"

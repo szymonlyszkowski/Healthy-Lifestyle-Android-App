@@ -1,0 +1,4 @@
+android.signingConfigs.release.storeFile file("/path/to/store.jks")
+android.signingConfigs.release.storePassword "password"
+android.signingConfigs.release.keyAlias "alias"
+android.signingConfigs.release.keyPassword "password"

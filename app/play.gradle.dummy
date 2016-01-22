@@ -1,0 +1,3 @@
+play {
+    jsonFile = file('keys.json')
+}

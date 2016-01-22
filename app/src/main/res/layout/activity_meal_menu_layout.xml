@@ -25,7 +25,6 @@
             android:layout_below="@+id/remove_meal_button"
             tools:listitem="@android:layout/simple_list_item_multiple_choice"
             android:id="@android:id/list"
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:drawSelectorOnTop="false"
             style="@style/ListStyle"
             android:clickable="true" android:choiceMode="multipleChoice"/>
